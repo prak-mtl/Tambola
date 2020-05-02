@@ -45,7 +45,7 @@
       </div>
       <br />
       <div class="row">
-        <div class="col-md-4 well well-lg text-left" style="height: 420px;">
+        <div class="col-md-4 well well-lg text-left" style="height: 360px;">
           <h4 style="text-align: center;">Previous number</h4>
           <div id="prevNum">0</div>
           <h4>Rules</h4>
@@ -63,7 +63,18 @@
             <li>Full House 2</li>
           </ol>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 table-design">
+          <div class="rowRange">
+            <span>1-10</span>
+            <span>11-20</span>
+            <span>21-30</span>
+            <span>31-40</span>
+            <span>41-50</span>
+            <span>51-60</span>
+            <span>61-70</span>
+            <span>71-80</span>
+            <span>81-90</span>
+          </div>
           <table>
             <tr>
               <td></td>
@@ -182,6 +193,12 @@
       body {
         padding-top: 15px;
       }
+      h4,
+      h5,
+      h6 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
       .divRules {
         float: left;
         width: 20%;
@@ -189,7 +206,7 @@
         font-size: 20px;
       }
       #prevNum {
-        font-size: 70px;
+        font-size: 50px;
         color: #f00;
       }
       .bingoNumberDesc {
@@ -217,17 +234,31 @@
         border: solid 1px #999;
       }
       td {
-        min-width: 74px;
+        min-width: 70px;
         text-align: center;
         color: #fff;
         font-size: 2em;
-        height: 46px;
+        height: 40px;
       }
       td.selected {
         color: #0d8930;
       }
       .well-lg {
-        padding: 10px 0 0 15px;
+        padding: 15px 0 0 15px;
+      }
+      .table-design {
+        display: flex;
+        justify-content: space-between;
+      }
+      .rowRange {
+        height: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .rowRange > span {
+        text-align: left;
+        font-size: 16px;
       }
     </style>
     <script
@@ -375,14 +406,14 @@
 
                 setTimeout(function () {
                   clearInterval(interval);
-                }, settings.duration * 500 - settings.interval);
+                }, settings.duration * 200 - settings.interval);
               });
 
               setTimeout(function () {
                 $this.text(settings.endAt.toString());
                 $("#mirageElement").css("display", "none");
                 $("#numCounter").css("display", "");
-              }, settings.duration * 500);
+              }, settings.duration * 200);
             });
           },
         });
@@ -441,7 +472,7 @@
             $("td.cell" + random).addClass("selected");
             $("#numCounter").animate({ zoom: "200%" }, "slow");
             $("#numCounter").animate({ zoom: "100%" }, "slow");
-          }, animDuration * 500);
+          }, animDuration * 200);
         });
         window.onbeforeunload = function (e) {
           e = e || window.event;
